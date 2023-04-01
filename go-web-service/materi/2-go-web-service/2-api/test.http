@@ -1,0 +1,10 @@
+GET http://localhost:8080/employees/
+
+POST http://localhost:8080/employee/
+Content-Type: application/json
+
+{
+    "nama": "Snow White",
+    "age": 20,
+    "division": "Marketing"
+}
