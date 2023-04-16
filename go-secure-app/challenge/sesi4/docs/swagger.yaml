@@ -1,0 +1,431 @@
+definitions:
+  models.Comment:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      message:
+        type: string
+      photo_id:
+        type: integer
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.Photo:
+    properties:
+      caption:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      photo_url:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.SocialMedia:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      social_media_url:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.User:
+    properties:
+      age:
+        type: integer
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      password:
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: MyGram API
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Login user to get token
+      parameters:
+      - description: login user
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Login user
+      tags:
+      - users
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Create new user data
+      parameters:
+      - description: create user
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      summary: Create a data
+      tags:
+      - users
+  /comments:
+    get:
+      consumes:
+      - application/json
+      description: Get all comments data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+      security:
+      - bearerAuth: []
+      summary: Get all details
+      tags:
+      - comments
+  /comments/:
+    post:
+      consumes:
+      - application/json
+      description: Create new comment data
+      parameters:
+      - description: create comment
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/models.Comment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+      security:
+      - bearerAuth: []
+      summary: Create a data
+      tags:
+      - comments
+  /comments/{id}:
+    delete:
+      parameters:
+      - description: ID of the comment
+        in: path
+        name: Id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+    get:
+      consumes:
+      - application/json
+      description: Get detail of a comments data
+      parameters:
+      - description: ID of the comment
+        in: path
+        name: Id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+      security:
+      - bearerAuth: []
+      summary: Get detail of a data
+      tags:
+      - comments
+    put:
+      consumes:
+      - application/json
+      description: Update a comment data
+      parameters:
+      - description: ID of the comment
+        in: path
+        name: Id
+        required: true
+        type: integer
+      - description: update comment
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/models.Comment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+      security:
+      - bearerAuth: []
+      summary: Update a data
+      tags:
+      - comments
+  /photos:
+    get:
+      consumes:
+      - application/json
+      description: Get all photos data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+      security:
+      - bearerAuth: []
+      summary: Get all details
+      tags:
+      - photos
+  /photos/:
+    post:
+      consumes:
+      - application/json
+      description: Create new photo data
+      parameters:
+      - description: create photo
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/models.Photo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+      security:
+      - bearerAuth: []
+      summary: Create a data
+      tags:
+      - photos
+  /photos/{id}:
+    delete:
+      parameters:
+      - description: ID of the photo
+        in: path
+        name: Id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+    get:
+      consumes:
+      - application/json
+      description: Get detail of a photos data
+      parameters:
+      - description: ID of the photo
+        in: path
+        name: Id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+      security:
+      - bearerAuth: []
+      summary: Get detail of a data
+      tags:
+      - photos
+    put:
+      consumes:
+      - application/json
+      description: Update a photo data
+      parameters:
+      - description: ID of the photo
+        in: path
+        name: Id
+        required: true
+        type: integer
+      - description: update photo
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/models.Photo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+      security:
+      - bearerAuth: []
+      summary: Update a data
+      tags:
+      - photos
+  /social_medias:
+    get:
+      consumes:
+      - application/json
+      description: Get all social_medias data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+      security:
+      - bearerAuth: []
+      summary: Get all details
+      tags:
+      - social_medias
+  /social_medias/:
+    post:
+      consumes:
+      - application/json
+      description: Create new social_media data
+      parameters:
+      - description: create social media
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/models.SocialMedia'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+      security:
+      - bearerAuth: []
+      summary: Create a data
+      tags:
+      - social_medias
+  /social_medias/{id}:
+    delete:
+      parameters:
+      - description: ID of the social_media
+        in: path
+        name: Id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+    get:
+      consumes:
+      - application/json
+      description: Get detail of a social_medias data
+      parameters:
+      - description: ID of the social media
+        in: path
+        name: Id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+      security:
+      - bearerAuth: []
+      summary: Get detail of a data
+      tags:
+      - social_medias
+    put:
+      consumes:
+      - application/json
+      description: Update a social_media data
+      parameters:
+      - description: ID of the social media
+        in: path
+        name: Id
+        required: true
+        type: integer
+      - description: update social media
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/models.SocialMedia'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+      security:
+      - bearerAuth: []
+      summary: Update a data
+      tags:
+      - social_medias
+securityDefinitions:
+  bearerAuth:
+    description: This is an api for MyGram Project
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

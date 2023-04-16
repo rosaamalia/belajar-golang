@@ -11,6 +11,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GetAllPhotos godoc
+// @Summary Get all details
+// @Description Get all photos data
+// @Tags photos
+// @Accept json
+// @Produce json
+// @Security bearerAuth
+// @Success 200 {object} models.Photo
+// @Router /photos [get]
 func GetAllPhotos(c *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(c)
@@ -37,6 +46,16 @@ func GetAllPhotos(c *gin.Context) {
 	c.JSON(http.StatusCreated, Photo)
 }
 
+// GetPhotoById godoc
+// @Summary Get detail of a data
+// @Description Get detail of a photos data
+// @Tags photos
+// @Accept json
+// @Produce json
+// @Security bearerAuth
+// @Param Id path int true "ID of the photo"
+// @Success 200 {object} models.Photo
+// @Router /photos/{id} [get]
 func GetPhotoById(c *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(c)
@@ -65,6 +84,16 @@ func GetPhotoById(c *gin.Context) {
 	c.JSON(http.StatusCreated, Photo)
 }
 
+// CreatePhoto godoc
+// @Summary Create a data
+// @Description Create new photo data
+// @Tags photos
+// @Accept json
+// @Produce json
+// @Security bearerAuth
+// @Param requestBody body models.Photo true "create photo"
+// @Success 200 {object} models.Photo
+// @Router /photos/ [post]
 func CreatePhoto(c *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(c)
@@ -97,6 +126,17 @@ func CreatePhoto(c *gin.Context) {
 	c.JSON(http.StatusCreated, Photo)
 }
 
+// UpdatePhoto godoc
+// @Summary Update a data
+// @Description Update a photo data
+// @Tags photos
+// @Accept json
+// @Produce json
+// @Security bearerAuth
+// @Param Id path int true "ID of the photo"
+// @Param requestBody body models.Photo true "update photo"
+// @Success 200 {object} models.Photo
+// @Router /photos/{id} [put]
 func UpdatePhoto(c *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(c)
@@ -130,6 +170,17 @@ func UpdatePhoto(c *gin.Context) {
 	c.JSON(http.StatusOK, Photo)
 }
 
+// DeletePhoto godoc
+// @Summary Delete a data
+// @Description Delete a photo data
+// @Tags photos
+// @Accept json
+// @Produce json
+// @Security bearerAuth
+
+// @Param Id path int true "ID of the photo"
+// @Success 200 {object} models.Photo
+// @Router /photos/{id} [delete]
 func DeletePhoto(c *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(c)

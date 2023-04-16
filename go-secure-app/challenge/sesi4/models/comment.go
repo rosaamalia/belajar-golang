@@ -5,12 +5,11 @@ import (
 	"gorm.io/gorm"
 )
 
+// Comment represents the model for a comment
 type Comment struct {
 	GormModel
 	UserID		uint	`json:"user_id"`
-	User		*User	`json:"user"`
 	PhotoID		uint	`json:"photo_id"`
-	Photo		*Photo	`json:"photo"`
 	Message		string	`gorm:"not null" json:"message" form:"message" valid:"required~Message is required"`
 }
 

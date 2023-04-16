@@ -11,6 +11,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GetAllComments godoc
+// @Summary Get all details
+// @Description Get all comments data
+// @Tags comments
+// @Accept json
+// @Produce json
+// @Security bearerAuth
+// @Success 200 {object} models.Comment
+// @Router /comments [get]
 func GetAllComments(c *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(c)
@@ -37,6 +46,16 @@ func GetAllComments(c *gin.Context) {
 	c.JSON(http.StatusCreated, Comment)
 }
 
+// GetCommentById godoc
+// @Summary Get detail of a data
+// @Description Get detail of a comments data
+// @Tags comments
+// @Accept json
+// @Produce json
+// @Security bearerAuth
+// @Param Id path int true "ID of the comment"
+// @Success 200 {object} models.Comment
+// @Router /comments/{id} [get]
 func GetCommentById(c *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(c)
@@ -65,6 +84,16 @@ func GetCommentById(c *gin.Context) {
 	c.JSON(http.StatusCreated, Comment)
 }
 
+// CreateComment godoc
+// @Summary Create a data
+// @Description Create new comment data
+// @Tags comments
+// @Accept json
+// @Produce json
+// @Security bearerAuth
+// @Param requestBody body models.Comment true "create comment"
+// @Success 200 {object} models.Comment
+// @Router /comments/ [post]
 func CreateComment(c *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(c)
@@ -97,6 +126,17 @@ func CreateComment(c *gin.Context) {
 	c.JSON(http.StatusCreated, Comment)
 }
 
+// UpdateComment godoc
+// @Summary Update a data
+// @Description Update a comment data
+// @Tags comments
+// @Accept json
+// @Produce json
+// @Security bearerAuth
+// @Param Id path int true "ID of the comment"
+// @Param requestBody body models.Comment true "update comment"
+// @Success 200 {object} models.Comment
+// @Router /comments/{id} [put]
 func UpdateComment(c *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(c)
@@ -135,6 +175,17 @@ func UpdateComment(c *gin.Context) {
 	c.JSON(http.StatusOK, Comment)
 }
 
+// DeleteComment godoc
+// @Summary Delete a data
+// @Description Delete a comment data
+// @Tags comments
+// @Accept json
+// @Produce json
+// @Security bearerAuth
+
+// @Param Id path int true "ID of the comment"
+// @Success 200 {object} models.Comment
+// @Router /comments/{id} [delete]
 func DeleteComment(c *gin.Context) {
 	db := database.GetDB()
 	contentType := helpers.GetContentType(c)
